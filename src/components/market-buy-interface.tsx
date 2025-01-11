@@ -83,6 +83,11 @@ export function MarketBuyInterface({
   const checkApproval = async () => {
     if (amount <= 0) {
       setError('Amount must be greater than 0');
+      toast({
+        title: 'Error',
+        description: 'Amount must be greater than 0',
+        variant: 'destructive',
+      });
       return;
     }
     setError(null);
@@ -127,6 +132,11 @@ export function MarketBuyInterface({
   const handleConfirm = async () => {
     if (!selectedOption || amount <= 0) {
       setError('Must select an option and enter an amount greater than 0');
+      toast({
+        title: 'Error',
+        description: 'Must select an option and enter an amount greater than 0',
+        variant: 'destructive',
+      });
       return;
     }
 
@@ -155,11 +165,16 @@ export function MarketBuyInterface({
 
       handleCancel();
     } catch (error) {
-      console.error(error);
-      // Optionally show error toast
+      // console.error(error);
+
+      // Extract error message for toast
+      const errorMessage =
+        error instanceof Error ? error.message : 'Unknown error occurred';
+
+      // Show error toast
       toast({
         title: 'Purchase Failed',
-        description: 'There was an error processing your purchase',
+        description: errorMessage,
         variant: 'destructive',
       });
     } finally {

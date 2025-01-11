@@ -18,6 +18,8 @@ export function Navbar() {
       const resp = await fetch('/api/claimToken', {
         method: 'POST',
         body: JSON.stringify({ address: account?.address }),
+        credentials: 'include',
+        mode: 'cors',
       });
 
       if (!resp.ok) {

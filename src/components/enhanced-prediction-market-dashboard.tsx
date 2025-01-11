@@ -1,6 +1,6 @@
-/* eslint-disable @next/next/no-img-element */
 'use client';
 
+import Image from 'next/image';
 import { useReadContract } from 'thirdweb/react';
 import { contract } from '@/constants/contract';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
@@ -8,6 +8,7 @@ import { MarketCard } from './marketCard';
 import { Navbar } from './navbar';
 import { MarketCardSkeleton } from './market-card-skeleton';
 import { Footer } from './footer';
+import banner from '../../public/pm.jpeg';
 
 export function EnhancedPredictionMarketDashboard() {
   const { data: marketCount, isLoading: isLoadingMarketCount } =
@@ -27,9 +28,12 @@ export function EnhancedPredictionMarketDashboard() {
       <div className='flex-grow container mx-auto p-4'>
         <Navbar />
         <div className='mb-4'>
-          <img
-            src='https://placehold.co/800x300'
-            alt='Placeholder Banner'
+          <Image
+            src={banner}
+            alt='Banner'
+            width={800}
+            height={300}
+            priority={true}
             className='w-full h-auto rounded-lg'
           />
         </div>
